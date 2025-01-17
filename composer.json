@@ -1,0 +1,6 @@
+{
+    "require": {
+        "m1/env": "^2.2",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
