@@ -1,0 +1,53 @@
+# Ignore PHPStorm or JetBrains project files
+.idea/
+
+# Composer vendor directory
+/vendor/
+
+# Composer lock file (if you want to ignore it)
+composer.lock
+
+# Node.js dependencies (if using Node.js for frontend assets)
+node_modules/
+
+# npm package lock (if applicable)
+package-lock.json
+
+# Environment files (dotenv)
+.env
+
+# Cache and session files
+/cache/
+session/
+
+# Log files
+*.log
+
+# PHPUnit cache and logs
+.phpunit.result.cache
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE-specific files (e.g., Sublime Text, VSCode)
+.vscode/
+.sublime-project
+.sublime-workspace
+
+# Ignore temporary and backup files
+*.swp
+*~
+*.bak
+
+# Ignore deployment artifacts (e.g., after running a build)
+/public/build/
+
+# Ignore PHP-specific temp files
+*.phar
+
+# Ignore the Composer vendor directory's symlink (if present)
+composer.phar
+
+/imgs/users/*
+!/.gitkeep
