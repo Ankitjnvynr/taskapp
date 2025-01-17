@@ -14,9 +14,13 @@ $dbPassword = $_ENV['DB_PASSWORD'];
 $dbName = $_ENV['DB_NAME'];
 
 // Database connection
-$conn = new mysqli($dbHost, $dbUser, $dbPassword, $dbName);
+try {
+    $conn = new mysqli($dbHost, $dbUser, $dbPassword, $dbName);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    if ($conn->connect_error) {
+        throw new Exception("Connection failed: " . $conn->connect_error);
+    }
+} catch (Exception $e) {
+    die($e->getMessage());
 }
 ?>
