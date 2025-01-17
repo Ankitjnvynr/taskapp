@@ -159,27 +159,37 @@ $(document).ready(() => {
     }
     userImage();
 
-    $('#myForm').on('submit', (e) => {
-        e.preventDefault(); // Prevents the default form submission behavior
 
+
+    // adding new task
+
+    $('#myForm').on('submit', async (e) => {
+        e.preventDefault(); 
+        
         $.ajax({
             url: 'assest/_add.php', // The server-side script to handle the form data
             type: 'POST', // HTTP request type
             data: {
                 task: $('#task').val(), // Getting the value of the 'task' input
-                fromTime: $('#fromTime').val(), // Getting the value of the 'fromTime' input
-                toTime: $('#toTime').val(), // Getting the value of the 'toTime' input
+                
             },
-            success: (response) => {
-                load(); // Assuming load() is a function to update the UI or perform some action after successful submission
-                sEdits(); // Assuming sEdits() is another function being called after successful submission
-                $('#myForm')[0].reset(); // Resetting the form after successful submission
-                // Logging the server's response to the console
-                $('#toastBody').text("New task added !")
-                toastBootstrap.show()
+            success: async (response) => {
+                console.log(response);
+                
+                // const res = await JSON.parse(response);
+                res = response;
+                if (res.status === "success") {
+                    console.log(res.message);
+                    load(); // Assuming load() is a function to update the UI or perform some action after successful submission
+                    sEdits(); // Assuming sEdits() is another function being called after successful submission
+                    $('#myForm')[0].reset(); // Resetting the form after successful submission
+                    $('#toastBody').text("New task added !");
+                    toastBootstrap.show();
+                } else {
+                    console.error("Failed to add task");
+                }
             }
         });
-
     });
 
 
@@ -223,30 +233,50 @@ $(document).ready(() => {
     loadpast()
     sEdits()
 
-    $('#UpdateForm').on('submit',
-        (e) => {
-            e.preventDefault();
-            $.ajax({
-                url: 'assest/_update.php',
-                type: 'POST',
-                data: {
-                    uptask: updateTask.value,
-                    upid: updateID.value,
-                    ufromTime: $('#ufromTime').val(),
-                    utoTime: $('#utoTime').val(),
-                },
-                success: (response) => {
-                    console.log(response)
-                    load();
-                    loadpast();
-                    sEdits()
-
-                    $('#UpdateModal').modal('hide');
-                    $('#toastBody').text("Task updated !")
-                    toastBootstrap.show()
+    $('#UpdateForm').on('submit', (e) => {
+        e.preventDefault(); // Prevent form submission
+    
+        $.ajax({
+            url: 'assest/_update.php', // Path to the PHP script
+            type: 'POST',
+            data: {
+                uptask: updateTask.value, // New task value
+                upid: updateID.value // Task ID
+            },
+            success: (response) => {
+                try {
+                    const jsonResponse = response; // Parse the JSON response
+    
+                    if (jsonResponse.status === 'success') {
+                        console.log(jsonResponse.message); // Log success message
+    
+                        // Perform actions on success
+                        load();
+                        loadpast();
+                        sEdits();
+    
+                        $('#UpdateModal').modal('hide');
+                        $('#toastBody').text("Task updated!"); // Show success message
+                        toastBootstrap.show();
+                    } else {
+                        console.error(jsonResponse.message); // Log error message
+                        $('#toastBody').text(`Error: ${jsonResponse.message}`); // Show error toast
+                        toastBootstrap.show();
+                    }
+                } catch (error) {
+                    console.error("Failed to parse JSON response:", error); // Handle JSON parsing errors
+                    $('#toastBody').text("Unexpected response format!");
+                    toastBootstrap.show();
                 }
-            })
-        })
+            },
+            error: (xhr, status, error) => {
+                console.error("AJAX request failed:", error); // Log AJAX error
+                $('#toastBody').text("An error occurred while updating the task.");
+                toastBootstrap.show();
+            }
+        });
+    });
+    
 
     $('#updatePass').on('submit',
         (e) => {

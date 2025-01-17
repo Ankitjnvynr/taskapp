@@ -76,11 +76,7 @@ date_default_timezone_set("Asia/Kolkata");
 								<textarea name="task" id="updateTask"
 									class="form-control  border border-primary text-primary" required rows="2">
 								</textarea>
-								<input name="ufromTime" placeholder="--:--" id="ufromTime" type="time"
-								class="myinout form-control border border-primary text-primary" required>
-
-								<input name="utoTime" placeholder="--:--" id="utoTime" type="time"
-								class="myinout form-control border border-primary text-primary" required>
+								
 							</div>
 						</div>
 					</div>
@@ -203,15 +199,7 @@ date_default_timezone_set("Asia/Kolkata");
 				// <label class="border p-1 px-3" for="toTime">Enter The Last Time</label>
 				// <label class="border p-1 px-3" for="fromTime">Enter The Start Time</label>
 				?>
-				<div class="col-md-11  py-2 d-flex gap-3">
-
-					<input name="fromTime" id="fromTime" type="time"
-					class="myinout form-control border border-primary text-primary" placeholder="ndksjfkshkjd"
-					required>
-
-					<input name="toTime" id="toTime" type="time"
-					class="myinout form-control border border-primary text-primary" required>
-				</div>
+				
 				<div class="col-md-1 d-flex justify-content-center align-items-center">
 					<button class="btn btn-primary">Add</button>
 				</div>

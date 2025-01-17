@@ -92,10 +92,7 @@ $tod = new DateTime;
                 <th scope="row">' . $sr . '</th>
                 <td style="position:relative !important;" id="task' . $id . '" colspan="2" class=" position-relative">
                 <p >' . $task . '</p>  
-                <span  class="timing ">Deadline </span> 
-                <span  class="timing ">'.substr($fromtime,0,5).'</span> 
-                <span  class="timing "> to  </span>
-                <span  class="timing ">'.substr($totime,0,5).'</span>
+                
                 </td>
 
                 <td class="text-center">
@@ -107,12 +104,15 @@ $tod = new DateTime;
                     </label>
                 </td>
                 <td >
-                    <button style="border:none !important;" class="editBtn btn btn-primary bg-white text-primary border  border-none p-0 my-1" data-bs-toggle="modal" data-bs-target="#UpdateModal" data-editid = "' . $id . ' "><i class="fa-solid fa-pen-to-square"></i></button>
+                    
                     <button style="border:none !important;" data-value ="' . $id . '" onclick = deleteTask(this.dataset.value)  class="btn bg-white text-danger border border-none outline-none btn-danger p-0 my-1"><i class="fa-solid fa-trash-can"></i></button>
                 </td>
             </tr>
             ';
         }
+
+
+        // <button style="border:none !important;" class="editBtn btn btn-primary bg-white text-primary border  border-none p-0 my-1" data-bs-toggle="modal" data-bs-target="#UpdateModal" data-editid = "' . $id . ' "><i class="fa-solid fa-pen-to-square"></i></button>
         ?>
 
 
